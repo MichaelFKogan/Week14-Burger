@@ -1,56 +1,66 @@
-<h1>Cats!</h1>
+<div class="container">
+<div class="jumbotron" style="margin-top: 20px;">
+<div class="row">
+<h1 class="text-center" style="margin-bottom: 40px; margin-top:0px;">Burgers</h1></div>
 
-<h2>Cats that are not sleepy!</h2>
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="font-size: 16px; font-weight: bold;">
 
-<ul>
-  {{#each cats}}
-    {{#unless this.sleepy}}
-      <li>
-        {{this.name}}
+<h3 style="margin-top:0px;">New Burgers</h3>
+{{!-- SELECT ALL --}}
+{{#each placeholder }}
+  {{this.id}}. {{this.burger_name}}
 
-        <form action="cats/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="sleepy" value="true">
-          <button type="submit">SLEEP TIME!</button>
+    {{!-- UPDATE BURGER TO DEVOURED = TRUE --}}
+  <form action="/update?_method=PUT" method="POST">
+          <input type="hidden" name="boolean" value="1">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn btn-primary">Devour It!</button>
         </form>
+<br>
+{{/each}}
 
-        {{> cats/delete-cat}}
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
+	</div>
 
-<h2>Cats that are sleepy!</h2>
+	{{!-- Need Second Column for DEVOURED Section --}}
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 " style="font-size: 16px; font-weight: bold;">
+<h3 style="margin-top:0px;">Devoured</h3>
+{{!-- DISPLAY DEVOURED --}}
+{{!-- <div style="background:white; border:1px solid black; margin: 20px;"> --}}
 
-<ul>
-  {{#each cats}}
-    {{#if this.sleepy}}
-      <li>
-        {{this.name}}
+{{#each placeholderTwo }}
+  {{this.id}}. {{this.burger_name}}
 
-        <form action="cats/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="sleepy" value="false">
-          <button type="submit">WAKE UP!</button>
+  {{!-- DELETE A BURGER --}}
+  <form action="/delete?_method=DELETE" method="POST">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+<br>
+{{/each}}
 
-        {{> cats/delete-cat}}
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
+</div>
+</div>
 
-<h2>Add a Cat</h2>
-<form class="create-update-form" action="cats/create" method="POST">
+{{!-- POST BURGER TO PAGE --}}
+<div class="row text-center">
+  <form action="/create" method="POST" style="margin:40px;">
+  	
+    <input style="width:400px;" type="text" name="burgerInput" style="margin-right:0px;"></input>
+	<input type="hidden" name="boolean" value="0">
+  	<button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-  <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
+</div>
 
-  <div class="form-group">
-    <label for="slee">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
+</div>
+</div>
 
-  <button type="submit">Add Cat</button>
-</form>
+
+
+
+
+
+
+
