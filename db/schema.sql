@@ -10,14 +10,14 @@ to run this file do this in your Terminal:
 
 */
 
-CREATE DATABASE burgers_db;
-USE burgers_db;
+-- CREATE DATABASE burgers_db;
+USE k0y92biktu9zn9so;
 
 CREATE TABLE burgers(
 
-id INT NOT NULL AUTO_INCREMENT,
-burger_name VARCHAR(255) NOT NULL,
+id INT AUTO_INCREMENT NOT NULL,
+burger_name VARCHAR(255),
 devoured BOOLEAN NOT NULL,
-daate TIMESTAMP,
+createdAt TIMESTAMP NOT NULL,
 PRIMARY KEY (id)
 );
